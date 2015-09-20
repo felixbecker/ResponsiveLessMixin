@@ -1,0 +1,30 @@
+@small-range:    0em, 40em ;
+@medium-range:   40.063em, 64em;
+@large-range:    64.063em, 90em ;
+@xlarge-range:   90.063em, 120em;
+@xxlarge-range:  120.063em;
+
+.responsive(@range; @rules) {
+
+    @length: length(@range);
+
+    & when (@length = 2){
+      @min-width: extract(@range,1);
+      @max-width: extract(@range,2);
+
+      @media only screen and
+          (min-width: @min-width) and
+          (max-width: @max-width) {
+          @rules();
+      }
+    }
+     & when (@length = 1){
+
+      @min-width: extract(@range,1);
+      @media only screen and
+          (min-width: @min-width){
+          @rules();
+      }
+
+    }
+}
